@@ -35,7 +35,7 @@ mongoose.connect(config.url, {
 
 // default route
 app.get('/', (req, res) => {
-    res.json({"message": "This is Tmassuia api"});
+    res.json({"message": "Thisis Tmassuia api"});
 });
 
 // listen on port 3000
