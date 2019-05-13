@@ -1,4 +1,4 @@
-const Product = require('./product.model.js');
+const Project = require('./project.model.js');
 
 //Create new Product
 exports.create = (req, res) => {
@@ -6,16 +6,21 @@ exports.create = (req, res) => {
     if(!req.body) {
         
         return res.status(400).send({
-            message: "Product content can not be empty"
+            message: "Project content can not be empty"
         });
-    }
+    } 
 
     // Create a Product
-    const product = new Product({
-     //   title: req.body.title || "No product title", 
-        description: req.body.description,
-        // price: req.body.price,
-        // company: req.body.company
+    const product = new Project({
+        title: req.body.title || "No product title", 
+        shortdescription: req.body.shortdescription,
+        tilecolor: req.body.tilecolor,
+        clientlogo: req.body.clientlogo,
+        coverimage: req.body.coverimage,
+        heroimage: req.body.heroimage,
+        linktoproject: req.body.linktoproject,
+        photo: req.body.photo,
+        tech: req.body.tech
     });
 
     // Save Product in the database
@@ -31,7 +36,7 @@ exports.create = (req, res) => {
 
 // Retrieve all products from the database.
 exports.findAll = (req, res) => {
-    Product.find()
+    Project.find()
     .then(products => {
         res.send(products);
     }).catch(err => {
@@ -43,7 +48,7 @@ exports.findAll = (req, res) => {
 
 // Find a single product with a productId
 exports.findOne = (req, res) => {
-    Product.findById(req.params.productId)
+    Project.findById(req.params.productId)
     .then(product => {
         if(!product) {
             return res.status(404).send({
@@ -54,7 +59,7 @@ exports.findOne = (req, res) => {
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Project not found with id " + req.params.productId
             });                
         }
         return res.status(500).send({
@@ -68,12 +73,12 @@ exports.update = (req, res) => {
     // Validate Request
     if(!req.body) {
         return res.status(400).send({
-            message: "Product content can not be empty"
+            message: "Project content can not be empty"
         });
     }
 
     // Find and update product with the request body
-    Product.findByIdAndUpdate(req.params.productId, {
+    Project.findByIdAndUpdate(req.params.productId, {
         title: req.body.title || "No product title", 
         description: req.body.description,
         // price: req.body.price,
@@ -89,7 +94,7 @@ exports.update = (req, res) => {
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Project not found with id " + req.params.productId
             });                
         }
         return res.status(500).send({
@@ -100,7 +105,7 @@ exports.update = (req, res) => {
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Product.findByIdAndRemove(req.params.productId)
+    Project.findByIdAndRemove(req.params.productId)
     .then(product => {
         if(!product) {
             return res.status(404).send({

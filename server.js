@@ -20,6 +20,8 @@ app.use(function(req, res, next) {
 const config = require('./config.js');
 const mongoose = require('mongoose');
 require('./product.routes.js')(app);
+require('./projects/project.routes')(app);
+require('./jobs/job.routes')(app);
 
 mongoose.Promise = global.Promise;
 
