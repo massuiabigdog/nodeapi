@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     } 
 
     // Create a Product
-    const product = new Project({
+    const project = new Project({
         title: req.body.title || "No product title", 
         shortdescription: req.body.shortdescription,
         tilecolor: req.body.tilecolor,
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     });
 
     // Save Product in the database
-    product.save()
+    project.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -37,8 +37,8 @@ exports.create = (req, res) => {
 // Retrieve all products from the database.
 exports.findAll = (req, res) => {
     Project.find()
-    .then(products => {
-        res.send(products);
+    .then(project => {
+        res.send(project);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Something wrong while retrieving products."
@@ -48,22 +48,22 @@ exports.findAll = (req, res) => {
 
 // Find a single product with a productId
 exports.findOne = (req, res) => {
-    Project.findById(req.params.productId)
-    .then(product => {
-        if(!product) {
+    Project.findById(req.params.projectId)
+    .then(project => {
+        if(!project) {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Product not found with id " + req.params.projectId
             });            
         }
-        res.send(product);
+        res.send(project);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Project not found with id " + req.params.productId
+                message: "Project not found with id " + req.params.projectId
             });                
         }
         return res.status(500).send({
-            message: "Something wrong retrieving product with id " + req.params.productId
+            message: "Something wrong retrieving product with id " + req.params.projectId
         });
     });
 };

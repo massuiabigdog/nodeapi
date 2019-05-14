@@ -4,22 +4,24 @@ const Job = require('./job.model.js');
 exports.create = (req, res) => {
     // Request validation
     if(!req.body) {
-        Job
+        
         return res.status(400).send({
             message: "Job content can not be empty"
         });
     }
 
     // Create a Job
-    const Job = new Job({
-        title: req.body.title || "No Job title", 
-        description: req.body.description,
-         price: req.body.price,
-         company: req.body.company
+    const job = new Job({
+        companylogo: req.body.companylogo || "No Job title", 
+        companyname: req.body.companyname,
+        work: req.body.work,
+        period: req.body.period,
+        responsabilities: req.body.responsabilities,
+        companyweb: req.body.companyweb
     });
 
     // Save Job in the database
-    Job.save()
+    job.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
