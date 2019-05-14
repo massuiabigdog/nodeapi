@@ -21,7 +21,8 @@ const ProjectSchema = mongoose.Schema({
       photo10: String,
       photo11: String,
       photo12: String,
-    } ,
+    },
+    photoarray: Array,
     tech: Array,
 });
 

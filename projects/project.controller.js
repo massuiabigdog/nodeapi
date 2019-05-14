@@ -20,6 +20,7 @@ exports.create = (req, res) => {
         heroimage: req.body.heroimage,
         linktoproject: req.body.linktoproject,
         photo: req.body.photo,
+        photoarray: req.body.photoarray,
         tech: req.body.tech
     });
 
@@ -78,49 +79,55 @@ exports.update = (req, res) => {
     }
 
     // Find and update product with the request body
-    Project.findByIdAndUpdate(req.params.productId, {
+    Project.findByIdAndUpdate(req.params.projectId, {
         title: req.body.title || "No product title", 
-        description: req.body.description,
-        // price: req.body.price,
-        // company: req.body.company
+        shortdescription: req.body.shortdescription,
+        tilecolor: req.body.tilecolor,
+        clientlogo: req.body.clientlogo,
+        coverimage: req.body.coverimage,
+        heroimage: req.body.heroimage,
+        linktoproject: req.body.linktoproject,
+        photo: req.body.photo,
+        photoarray: req.body.photoarray,
+        tech: req.body.tech
     }, {new: true})
-    .then(product => {
-        if(!product) {
+    .then(project => {
+        if(!project) {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Product not found with id " + req.params.projectId
             });
         }
-        res.send(product);
+        res.send(project);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Project not found with id " + req.params.productId
+                message: "Project not found with id " + req.params.projectId
             });                
         }
         return res.status(500).send({
-            message: "Something wrong updating note with id " + req.params.productId
+            message: "Something wrong updating note with id " + req.params.projectId
         });
     });
 };
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Project.findByIdAndRemove(req.params.productId)
-    .then(product => {
-        if(!product) {
+    Project.findByIdAndRemove(req.params.projectId)
+    .then(project => {
+        if(!project) {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Product not found with id " + req.params.projectId
             });
         }
         res.send({message: "Product deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.productId
+                message: "Product not found with id " + req.params.projectId
             });                
         }
         return res.status(500).send({
-            message: "Could not delete product with id " + req.params.productId
+            message: "Could not delete product with id " + req.params.projectId
         });
     });
 };
