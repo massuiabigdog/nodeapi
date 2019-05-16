@@ -45,7 +45,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Job with a JobId
 exports.findOne = (req, res) => {
-    Job.findById(req.params.JobId)
+    Job.findById(req.params.jobId)
     .then(Job => {
         if(!Job) {
             return res.status(404).send({
@@ -102,7 +102,7 @@ exports.update = (req, res) => {
         });
     });
 };
-
+ 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
     Job.findByIdAndRemove(req.params.JobId)
