@@ -20,6 +20,7 @@ exports.create = (req, res) => {
         heroimage: req.body.heroimage,
         linktoproject: req.body.linktoproject,
         photo: req.body.photo,
+        hometech: req.body.hometech,
         photoarray: req.body.photoarray,
         tech: req.body.tech
     });
@@ -48,8 +49,8 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single product with a productId
-exports.findOne = (req, res) => {j
-    Project.findById(req.params.projectId)
+exports.findOne = (req, res) => 
+    {Project.findById(req.params.projectId)
     .then(project => {
         if(!project) {
             return res.status(404).send({
@@ -89,6 +90,7 @@ exports.update = (req, res) => {
         linktoproject: req.body.linktoproject,
         photo: req.body.photo,
         photoarray: req.body.photoarray,
+        hometech: req.body.hometech,
         tech: req.body.tech
     }, {new: true})
     .then(project => {
