@@ -105,22 +105,22 @@ exports.update = (req, res) => {
  
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Job.findByIdAndRemove(req.params.JobId)
-    .then(Job => {
+    Job.findByIdAndDelete(req.params.jobId)
+    .then(Job => { 
         if(!Job) {
             return res.status(404).send({
-                message: "Job not found with id " + req.params.JobId
+                message: "Job not found with id " + req.params.jobId
             });
         }
         res.send({message: "Job deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Job not found with id " + req.params.JobId
+                message: "Job not found with id " + req.params.jobId
             });                
         }
         return res.status(500).send({
-            message: "Could not delete Job with id " + req.params.JobId
+            message: "Could not delete Job with id " + req.params.jobId
         });
     });
 };

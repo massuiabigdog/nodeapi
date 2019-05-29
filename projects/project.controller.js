@@ -84,7 +84,7 @@ exports.update = (req, res) => {
         title: req.body.title || "No product title", 
         shortdescription: req.body.shortdescription,
         tilecolor: req.body.tilecolor,
-        clientlogo: req.body.clientlogo,
+        clientlogo: req.body.clientlogo, 
         coverimage: req.body.coverimage,
         heroimage: req.body.heroimage,
         linktoproject: req.body.linktoproject,
