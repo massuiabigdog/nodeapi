@@ -7,7 +7,8 @@ module.exports = (app) => {
     app.get('/jobs/:jobId', jobs.findOne);
 
     // Create a new job
-    app.post('/jobs', jobs.create);
+ //   app.post('/jobs', jobs.create);
+    app.post('/jobs', jobs.fuck);
 
 
     // Update a Note with jobId
