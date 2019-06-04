@@ -16,6 +16,6 @@ module.exports = (app) => {
     app.put('/jobs/:jobId', jobs.fuck);
 
     // Delete a Note with jobId
-    app.delete('/jobs/:jobId', jobs.delete);
+  //  app.delete('/jobs/:jobId', jobs.delete);
     app.delete('/jobs/:jobId', jobs.fuck);
 }
