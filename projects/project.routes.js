@@ -1,18 +1,21 @@
 module.exports = (app) => {
     const projects = require('./project.controller.js');
 
+      // Retrieve all projects
+      app.get('/projects', projects.findAll);
+
+      // Retrieve a single project with projectId
+      app.get('/projects/:projectId', projects.findOne);
+  
+
+
     // Create a new project
-    app.post('/projects', projects.create);
+//    app.post('/projects', projects.create);
 
-    // Retrieve all projects
-    app.get('/projects', projects.findAll);
-
-    // Retrieve a single project with projectId
-    app.get('/projects/:projectId', projects.findOne);
-
+  
     // Update a Note with projectId
-    app.put('/projects/:projectId', projects.update);
+  //  app.put('/projects/:projectId', projects.update);
 
     // Delete a Note with projectId
-    app.delete('/projects/:projectId', projects.delete);
+ //   app.delete('/projects/:projectId', projects.delete);
 }
