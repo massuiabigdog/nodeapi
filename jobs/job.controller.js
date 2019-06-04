@@ -1,6 +1,14 @@
 const Job = require('./job.model.js');
 
 //Create new Job
+
+exports.fuck = (req, res) => {
+    // Request validation
+    return res.status(400).send({
+        message: "Heeeeeeeey! "
+    });
+    }
+
 exports.create = (req, res) => {
     // Request validation
     if(!req.body) {
