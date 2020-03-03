@@ -10,12 +10,12 @@ module.exports = (app) => {
 
 
     // Create a new project
-//    app.post('/projects', projects.create);
+    app.post('/projects', projects.create);
 
   
     // Update a Note with projectId
-  //  app.put('/projects/:projectId', projects.update);
+    app.put('/projects/:projectId', projects.update);
 
     // Delete a Note with projectId
- //   app.delete('/projects/:projectId', projects.delete);
+    app.delete('/projects/:projectId', projects.delete);
 }
